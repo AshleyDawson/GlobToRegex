@@ -59,8 +59,10 @@ $paths = [
 ];
 
 // Find matches for the glob pattern `/**/*.txt`
-$matches = array_filter($paths, function ($path) {
-    return preg_match(glob_to_regex('/**/*.txt'), $path);
+$regex = glob_to_regex('/**/*.txt');
+
+$matches = array_filter($paths, function ($path) use ($regex) {
+    return preg_match($regex, $path);
 });
 
 print_r($matches);
