@@ -52,8 +52,14 @@ require __DIR__.'/vendor/autoload.php';
 
 use function AshleyDawson\GlobToRegex\glob_to_regex;
 
+$paths = [
+    '/foo/bar/sample.txt', 
+    '/baz/biz/example.txt', 
+    '/fiz/boo/music.mp3',
+];
+
 // Find matches for the glob pattern `/**/*.txt`
-$matches = array_filter(['/foo/bar/sample.txt', '/baz/biz/example.txt', '/fiz/boo/music.mp3'], function ($path) {
+$matches = array_filter($paths, function ($path) {
     return preg_match(glob_to_regex('/**/*.txt'), $path);
 });
 
